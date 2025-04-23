@@ -3,13 +3,18 @@ import requests
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
 
 def load_credentials():
-    return {
-        "email": os.getenv("EMAIL"),
-        "password": os.getenv("PASSWORD")
-    }
+    # Load from .env (only if running locally)
+    load_dotenv()
+
+    email = os.getenv("EMAIL")
+    password = os.getenv("PASSWORD")
+
+    if not email or not password:
+        raise ValueError("❌ Missing EMAIL or PASSWORD. Set them in .env or GitHub Secrets.")
+
+    return {"email": email, "password": password}
 
 @pytest.fixture(scope="session")
 def client_login_response():
