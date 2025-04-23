@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Wed Apr 23 21:24:22 UTC 2025","Wed Apr 23 21:24:23 UTC 2025","541","tests","test_client_profile","","","","test_get_client_profile",""
+"passed","Wed Apr 23 21:24:23 UTC 2025","Wed Apr 23 21:24:24 UTC 2025","535","tests","test_client_profile","","","","test_update_client_profile",""
+"passed","Wed Apr 23 21:24:22 UTC 2025","Wed Apr 23 21:24:22 UTC 2025","1","tests","test_client_login","","","","test_client_login_success",""
