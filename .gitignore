@@ -1,0 +1,15 @@
+# Ignore environment variable file
+.env
+
+# Ignore test reports
+allure-results/
+allure-report/
+
+# Ignore IDE/editor config (optional)
+.vscode/
+.idea/
+*.swp
+
+# Python specific
+__pycache__/
+*.pyc
