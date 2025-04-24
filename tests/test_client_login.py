@@ -5,4 +5,4 @@ def test_client_login_success(client_auth_token, client_user_info):
 
     assert client_user_info["email"] == "cometechu+6@gmail.com"
     assert client_user_info["type"] == "client"
-    assert client_user_info["nickname"] == "ClientTestUser"
+    assert client_user_info["nickname"] == "ClientTestUser1"  # set incorrect to demo trends
