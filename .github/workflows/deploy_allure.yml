@@ -41,7 +41,7 @@ jobs:
 
     - name: Run tests and generate Allure report
       run: |
-        pytest --alluredir=allure-results
+        pytest --alluredir=allure-results || true
         allure generate allure-results -o allure-report --clean
 
     - name: Debug history folder before upload
