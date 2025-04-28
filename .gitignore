@@ -1,15 +1,17 @@
-# Ignore environment variable file
-.env
+# IDE settings
+.idea/
 
-# Ignore test reports
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Test artifacts
 allure-results/
 allure-report/
 
-# Ignore IDE/editor config (optional)
-.vscode/
-.idea/
-*.swp
+# Local system files
+.DS_Store
 
-# Python specific
-__pycache__/
-*.pyc
+# Secrets
+.env
