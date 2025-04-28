@@ -25,7 +25,7 @@ This project demonstrates the setup of robust API test automation, integrated wi
 
 ---
 
-## 🏧 Project Structure
+## ⚙️ Project Structure
 
 ```bash
 api_demo_tests/
@@ -81,7 +81,7 @@ _(Never commit `.env` to GitHub!)_
 
 ---
 
-## 🧺 Run Tests and Generate Allure Report Locally
+## ⚙️ Run Tests and Generate Allure Report Locally
 
 Use the provided shell script:
 
