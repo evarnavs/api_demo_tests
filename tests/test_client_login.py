@@ -9,4 +9,4 @@ def test_client_login_success(client_auth_token, client_user_info):
 
     assert client_user_info["email"] == expected_email
     assert client_user_info["type"] == "client"
-    assert client_user_info["nickname"] == "ClientTestUser1"
+    assert client_user_info["nickname"] == "ClientTestUser"
