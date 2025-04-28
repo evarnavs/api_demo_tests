@@ -1,43 +1,49 @@
 import pytest
 import requests
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Read environment variables
+BASE_URL = os.getenv("BASE_URL")
+EMAIL = os.getenv("EMAIL")
+PASSWORD = os.getenv("PASSWORD")
+
+# Validate required environment variables
+missing = []
+
+if not BASE_URL:
+    missing.append("BASE_URL")
+if not EMAIL:
+    missing.append("EMAIL")
+if not PASSWORD:
+    missing.append("PASSWORD")
+
+if missing:
+    raise ValueError(f"❌ Missing environment variables: {', '.join(missing)}. Set them in .env or GitHub Secrets.")
 
 
 def load_credentials():
-    # Load from .env (only if running locally)
-    load_dotenv()
+    """
+    Load user credentials from environment variables
+    """
+    return {"email": EMAIL, "password": PASSWORD}
 
-    email = os.getenv("EMAIL")
-    password = os.getenv("PASSWORD")
-
-    if not email or not password:
-        raise ValueError("❌ Missing EMAIL or PASSWORD. Set them in .env or GitHub Secrets.")
-
-    return {"email": email, "password": password}
 
 @pytest.fixture(scope="session")
 def client_login_response():
+    """
+    Perform client login and return the full JSON response
+    """
     creds = load_credentials()
 
-    url = "https://staging.usupport.online/api/v1/user/login"
+    url = f"{BASE_URL}/api/v1/user/login"
     headers = {
         "accept": "application/json, text/plain, */*",
         "accept-language": "en-US,en;q=0.9",
         "content-type": "application/json",
-        "origin": "https://staging.usupport.online",
-        "referer": "https://staging.usupport.online/client/login",
-        "sec-ch-ua": '"Chromium";v="134", "Not:A-Brand";v="24", "Google Chrome";v="134"',
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": '"macOS"',
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "same-origin",
-        "user-agent": (
-            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) "
-            "Chrome/134.0.0.0 Safari/537.36"
-        ),
         "x-country-alpha-2": "KZ",
         "x-language-alpha-2": "en",
         "x-location": "Asia/Yerevan, AM"
@@ -53,17 +59,24 @@ def client_login_response():
     assert response.status_code == 200, f"Login failed: {response.text}"
 
     json_data = response.json()
-    assert "token" in json_data and "token" in json_data["token"], "JWT not found"
+    assert "token" in json_data and "token" in json_data["token"], "JWT token missing in login response."
+
     return json_data
 
 
 @pytest.fixture(scope="session")
 def client_auth_token(client_login_response):
+    """
+    Extract client authentication token (JWT) from login response
+    """
     return client_login_response["token"]["token"]
 
 
 @pytest.fixture
 def auth_headers(client_auth_token):
+    """
+    Provide headers with Authorization token for API requests
+    """
     return {
         "Authorization": f"Bearer {client_auth_token}",
         "x-country-alpha-2": "KZ",
@@ -76,4 +89,7 @@ def auth_headers(client_auth_token):
 
 @pytest.fixture(scope="session")
 def client_user_info(client_login_response):
+    """
+    Return full user information from login response
+    """
     return client_login_response["user"]
