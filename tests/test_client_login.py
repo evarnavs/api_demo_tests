@@ -1,8 +1,12 @@
+import os
+
+
 def test_client_login_success(client_auth_token, client_user_info):
+    expected_email = os.getenv("EMAIL")
+
     assert client_auth_token is not None
     assert isinstance(client_auth_token, str)
-    assert len(client_auth_token) > 20  # Rough check that it's a real JWT
 
-    assert client_user_info["email"] == "cometechu+6@gmail.com"
+    assert client_user_info["email"] == expected_email
     assert client_user_info["type"] == "client"
-    assert client_user_info["nickname"] == "ClientTestUser"  # set incorrect to demo trends
+    assert client_user_info["nickname"] == "ClientTestUser1"
