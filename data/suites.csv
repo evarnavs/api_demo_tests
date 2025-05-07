@@ -1,8 +1,8 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Wed May 07 09:46:41 UTC 2025","Wed May 07 09:46:41 UTC 2025","0","tests","test_client_profile","","","","test_get_client_profile","
+"passed","Wed May 07 09:50:08 UTC 2025","Wed May 07 09:50:08 UTC 2025","0","tests","test_client_login","","","","test_client_login_success",""
+"passed","Wed May 07 09:50:08 UTC 2025","Wed May 07 09:50:09 UTC 2025","506","tests","test_client_profile","","","","test_get_client_profile","
     Test retrieving client profile information
     "
-"failed","Wed May 07 09:46:40 UTC 2025","Wed May 07 09:46:40 UTC 2025","0","tests","test_client_login","","","","test_client_login_success",""
-"failed","Wed May 07 09:46:41 UTC 2025","Wed May 07 09:46:41 UTC 2025","0","tests","test_client_profile","","","","test_update_client_profile","
+"passed","Wed May 07 09:50:09 UTC 2025","Wed May 07 09:50:09 UTC 2025","550","tests","test_client_profile","","","","test_update_client_profile","
     Test updating client profile information
     "
