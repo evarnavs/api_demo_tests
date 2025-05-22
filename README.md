@@ -72,7 +72,7 @@ pip install -r requirements.txt
 Create a file called `.env` in the project root with the following content:
 
 ```env
-BASE_URL=https://staging.usupport.online
+BASE_URL=env_url
 EMAIL=your_test_email@example.com
 PASSWORD=your_test_password
 ```
